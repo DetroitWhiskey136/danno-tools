@@ -1,7 +1,0 @@
-LOG Dec-26-2020 06:47:23 this is a test
-LOG Dec-26-2020 06:51:04 this is a test
-LOG Dec-26-2020 06:54:19 this is a test
-INFO Dec-26-2020 06:54:19 this is also a test
-DEBUG Dec-26-2020 06:54:19 this one as well
-WARN Dec-26-2020 06:54:19 uhoh this is a warning
-ERROR Dec-26-2020 06:54:19 This is a error test: at: 142543511234125364536312542
