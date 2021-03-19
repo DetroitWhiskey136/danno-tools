@@ -1,4 +1,8 @@
 export {
   Logger,
-  LoggerOptions
+  LoggerOptions,
+  Colors,
+  colors,
+  colorTypes,
+  formating
 } from './src';

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as fs from 'fs';
+import { Colors, colors, formating } from '../features/Colors';
 
 interface Logger {
   path: string;
@@ -29,22 +30,7 @@ interface LoggerTypes {
   ERROR: string[];
 }
 
-/**
- * Color definitions for a prettier console output
- * @enum {number}
- */
-enum Colors {
-  FgBlue = '\x1b[34m',
-  FgCyan = '\x1b[36m',
-  FgGreen = '\x1b[32m',
-  FgLightMagenta = '\x1b[95m',
-  FgRed = '\x1b[31m',
-  FgWhite = '\x1b[37m',
-  FgYellow = '\x1b[33m',
-  FgDarkGray = '\x1b[90m',
-}
-
-type ColorResolvable = Colors | number | string;
+type ColorResolvable = colors | number | string;
 
 /**
  * Gives functions for formating the content.
@@ -56,7 +42,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   bold (text: string): string {
-    return `\x1b[1m${text}\x1b[0m`;
+    return `${formating.Bright}${text}${formating.Reset}`;
   },
 
   /**
@@ -66,7 +52,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   color (color: ColorResolvable, text: string): string {
-    return `${color + text}\x1b[0m`;
+    return `${color + text}${formating.Reset}`;
   },
 
   /**
@@ -75,7 +61,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   underlined (text: string): string {
-    return `\x1b[4m${text}\x1b[0m`;
+    return `${formating.Underline}${formating.Reset}`;
   }
 };
 
@@ -115,7 +101,7 @@ class Logger {
     const fileDate = `${date.getMonth() + 1}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
 
     return [
-      TerminalFormatter.color(Colors.FgDarkGray, `${formatedDate} ${formatedTime}`),
+      TerminalFormatter.color(Colors.Black.ForegroundLight, `${formatedDate} ${formatedTime}`),
       `${fileDate}`,
       `${formatedDate} ${formatedTime}`
     ];
@@ -150,7 +136,7 @@ class Logger {
       DEBUG: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.FgLightMagenta, 'DEBUG'
+            Colors.Magenta.ForegroundLight, 'DEBUG'
           )
         ),
         'DEBUG'
@@ -158,7 +144,7 @@ class Logger {
       ERROR: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.FgRed, 'ERROR'
+            Colors.Red.Foreground, 'ERROR'
           )
         ),
         'ERROR'
@@ -166,7 +152,7 @@ class Logger {
       INFO: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.FgCyan, 'INFO'
+            Colors.Cyan.Foreground, 'INFO'
           )
         ),
         'INFO'
@@ -174,7 +160,7 @@ class Logger {
       LOG: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.FgGreen, 'LOG'
+            Colors.Green.Foreground, 'LOG'
           )
         ),
         'LOG'
@@ -182,7 +168,7 @@ class Logger {
       WARN: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.FgYellow, 'WARN'
+            Colors.Yellow.Foreground, 'WARN'
           )
         ),
         'WARN'

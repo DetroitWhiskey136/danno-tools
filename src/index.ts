@@ -1,6 +1,13 @@
-import Logger, { LoggerOptions } from './file-management/Logger';
+import Logger, { LoggerOptions } from './utils/Logger';
+import { Colors, colors, colorTypes, formating } from './features/Colors';
 
 export {
+  // Utils
   Logger,
-  LoggerOptions
+  LoggerOptions,
+  // Features
+  Colors,
+  colors,
+  colorTypes,
+  formating
 };
