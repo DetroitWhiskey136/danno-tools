@@ -1,6 +1,6 @@
 {
   "name": "danno-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A central place for resources danno uses on a regular basis",
   "main": "dist/index.js",
   "scripts": {
