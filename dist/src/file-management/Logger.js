@@ -18,7 +18,7 @@ let Colors;
   Colors.FgDarkGray = '\u001B[90m';
 })(Colors || (Colors = {}));
 /**
- * Gives functions for formating the content.
+ * Gives functions for formatting the content.
  */
 const TerminalFormatter = {
   /**
@@ -26,7 +26,7 @@ const TerminalFormatter = {
      * @param {string} text The content.
      * @returns {string}
      */
-  bold (text) {
+  bold(text) {
     return `\x1b[1m${text}\x1b[0m`;
   },
   /**
@@ -35,7 +35,7 @@ const TerminalFormatter = {
      * @param {string} text The content.
      * @returns {string}
      */
-  color (color, text) {
+  color(color, text) {
     return `${color + text}\x1b[0m`;
   },
   /**
@@ -43,13 +43,13 @@ const TerminalFormatter = {
      * @param {string} text The content.
      * @returns {string}
      */
-  underlined (text) {
+  underlined(text) {
     return `\x1b[4m${text}\x1b[0m`;
   }
 };
 // eslint-disable-next-line no-redeclare
 class Logger {
-  constructor (options = { path: null, WTF: false }) {
+  constructor(options = { path: null, WTF: false }) {
     this.path = options.path;
     this.WTF = options.WTF || false;
   }
@@ -61,10 +61,10 @@ class Logger {
      * @private
      * @static
      * @param {number} input The value to check and format.
-     * @returns {string} The formated time, see NOTE!
+     * @returns {string} The formatted time, see NOTE!
      * @memberof Logger
      */
-  static formatTime (input) {
+  static formatTime(input) {
     return input < 10 ? `0${input}` : `${input}`;
   }
 
@@ -75,16 +75,16 @@ class Logger {
      * @returns {string[]} String Array
      * @memberof Logger
      */
-  static timestamp () {
+  static timestamp() {
     const date = new Date();
     const m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const formatedTime = `${this.formatTime(date.getHours())}:${this.formatTime(date.getMinutes())}:${this.formatTime(date.getSeconds())}`;
-    const formatedDate = `${m[date.getMonth()]}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
+    const formattedTime = `${this.formatTime(date.getHours())}:${this.formatTime(date.getMinutes())}:${this.formatTime(date.getSeconds())}`;
+    const formattedDate = `${m[date.getMonth()]}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
     const fileDate = `${date.getMonth() + 1}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
     return [
-      TerminalFormatter.color(Colors.FgDarkGray, `${formatedDate} ${formatedTime}`),
-            `${fileDate}`,
-            `${formatedDate} ${formatedTime}`
+      TerminalFormatter.color(Colors.FgDarkGray, `${formattedDate} ${formattedTime}`),
+      `${fileDate}`,
+      `${formattedDate} ${formattedTime}`
     ];
   }
 
@@ -97,7 +97,7 @@ class Logger {
      * @returns {void}
      * @memberof Logger
      */
-  appendLogs (timestamp, ...content) {
+  appendLogs(timestamp, ...content) {
     const filePath = `${this.path}/`;
     const file = `${filePath}${timestamp[1]}.log`;
     if (!fs.existsSync(filePath)) {
@@ -114,7 +114,7 @@ class Logger {
      * @returns {Array<string>} String Array
      * @memberof Logger
      */
-  static type (loggerType) {
+  static type(loggerType) {
     const types = {
       DEBUG: [
         TerminalFormatter.bold(TerminalFormatter.color(Colors.FgLightMagenta, 'DEBUG')),
@@ -147,7 +147,7 @@ class Logger {
      * @returns {void}
      * @memberof Logger
      */
-  log (...content) {
+  log(...content) {
     const tm = Logger.timestamp();
     console.log(Logger.type('LOG')[0], tm[0], ...content);
     if (this.WTF && this.path) {
@@ -164,7 +164,7 @@ class Logger {
      * @returns {void}
      * @memberof Logger
      */
-  info (...content) {
+  info(...content) {
     const tm = Logger.timestamp();
     console.log(Logger.type('INFO')[0], tm[0], ...content);
     if (this.WTF && this.path) {
@@ -181,7 +181,7 @@ class Logger {
      * @returns {void}
      * @memberof Logger
      */
-  debug (...content) {
+  debug(...content) {
     const tm = Logger.timestamp();
     console.log(Logger.type('DEBUG')[0], tm[0], ...content);
     if (this.WTF && this.path) {
@@ -198,7 +198,7 @@ class Logger {
      * @returns {void}
      * @memberof Logger
      */
-  warn (...content) {
+  warn(...content) {
     const tm = Logger.timestamp();
     console.log(Logger.type('WARN')[0], tm[0], ...content);
     if (this.WTF && this.path) {
@@ -215,7 +215,7 @@ class Logger {
      * @returns {void}
      * @memberof Logger
      */
-  error (...content) {
+  error(...content) {
     const tm = Logger.timestamp();
     console.log(Logger.type('ERROR')[0], tm[0], ...content);
     if (this.WTF && this.path) {
