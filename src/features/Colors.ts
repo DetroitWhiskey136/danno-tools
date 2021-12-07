@@ -18,7 +18,7 @@ interface colors {
   White: colorTypes;
 }
 
-const formating = {
+const formatting = {
   Reset: '\x1b[0m',
   Bright: '\x1b[1m',
   Dim: '\x1b[2m',
@@ -94,5 +94,5 @@ export {
   Colors,
   colors,
   colorTypes,
-  formating
+  formatting
 };

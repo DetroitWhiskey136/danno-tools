@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as fs from 'fs';
-import { Colors, colors, formating } from '../features/Colors';
+import { Colors, colors, formatting } from '../features/Colors';
 
 interface Logger {
   path: string;
@@ -33,7 +33,7 @@ interface LoggerTypes {
 type ColorResolvable = colors | number | string;
 
 /**
- * Gives functions for formating the content.
+ * Gives functions for formatting the content.
  */
 const TerminalFormatter = {
   /**
@@ -42,7 +42,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   bold (text: string): string {
-    return `${formating.Bright}${text}${formating.Reset}`;
+    return `${formatting.Bright}${text}${formatting.Reset}`;
   },
 
   /**
@@ -52,7 +52,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   color (color: ColorResolvable, text: string): string {
-    return `${color + text}${formating.Reset}`;
+    return `${color + text}${formatting.Reset}`;
   },
 
   /**
@@ -61,7 +61,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   underlined (text: string): string {
-    return `${formating.Underline}${formating.Reset}`;
+    return `${formatting.Underline}${formatting.Reset}`;
   }
 };
 
@@ -79,7 +79,7 @@ class Logger {
    * @private
    * @static
    * @param {number} input The value to check and format.
-   * @returns {string} The formated time, see NOTE!
+   * @returns {string} The formatted time, see NOTE!
    * @memberof Logger
    */
   private static formatTime (input: number): string {
@@ -96,14 +96,14 @@ class Logger {
   private static timestamp (): string[] {
     const date = new Date();
     const m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const formatedTime = `${this.formatTime(date.getHours())}:${this.formatTime(date.getMinutes())}:${this.formatTime(date.getSeconds())}`;
-    const formatedDate = `${m[date.getMonth()]}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
+    const formattedTime = `${this.formatTime(date.getHours())}:${this.formatTime(date.getMinutes())}:${this.formatTime(date.getSeconds())}`;
+    const formattedDate = `${m[date.getMonth()]}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
     const fileDate = `${date.getMonth() + 1}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
 
     return [
-      TerminalFormatter.color(Colors.Black.ForegroundLight, `${formatedDate} ${formatedTime}`),
+      TerminalFormatter.color(Colors.Black.ForegroundLight, `${formattedDate} ${formattedTime}`),
       `${fileDate}`,
-      `${formatedDate} ${formatedTime}`
+      `${formattedDate} ${formattedTime}`
     ];
   }
 
