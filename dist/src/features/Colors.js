@@ -1,0 +1,60 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.Colors = void 0;
+/* eslint-disable no-unused-vars */
+let Colors;
+(function (Colors) {
+  let Foreground;
+  (function (Foreground) {
+    Foreground.Grey = '\u001B[90m';
+    Foreground.Gray = '\u001B[90m';
+    Foreground.Red = '\u001B[31m';
+    Foreground.LightRed = '\u001B[91m';
+    Foreground.Green = '\u001B[32m';
+    Foreground.LightGreen = '\u001B[92m';
+    Foreground.Yellow = '\u001B[33m';
+    Foreground.LightYellow = '\u001B[93m';
+    Foreground.Blue = '\u001B[34m';
+    Foreground.LightBlue = '\u001B[94m';
+    Foreground.Magenta = '\u001B[35m';
+    Foreground.LightMagenta = '\u001B[95m';
+    Foreground.Cyan = '\u001B[36m';
+    Foreground.LightCyan = '\u001B[96m';
+    Foreground.White = '\u001B[37m';
+    Foreground.LightWhite = '\u001B[97m';
+    Foreground.Black = '\u001B[30m';
+  })(Foreground = Colors.Foreground || (Colors.Foreground = {}));
+  let Background;
+  (function (Background) {
+    Background.Grey = '\u001B[100m';
+    Background.Gray = '\u001B[100m';
+    Background.Red = '\u001B[41m';
+    Background.LightRed = '\u001B[101m';
+    Background.Green = '\u001B[42m';
+    Background.LightGreen = '\u001B[102m';
+    Background.Yellow = '\u001B[43m';
+    Background.LightYellow = '\u001B[103m';
+    Background.Blue = '\u001B[44m';
+    Background.LightBlue = '\u001B[104m';
+    Background.Magenta = '\u001B[45m';
+    Background.LightMagenta = '\u001B[105m';
+    Background.Cyan = '\u001B[46m';
+    Background.LightCyan = '\u001B[106m';
+    Background.White = '\u001B[m47';
+    Background.LightWhite = '\u001B[107m';
+    Background.Black = '\u001B[40m';
+  })(Background = Colors.Background || (Colors.Background = {}));
+  let Formatters;
+  (function (Formatters) {
+    Formatters.Reset = '\u001B[0m';
+    Formatters.Bold = '\u001B[1m';
+    Formatters.Dim = '\u001B[2m';
+    Formatters.Italic = '\u001B[3m';
+    Formatters.Underline = '\u001B[4m';
+    Formatters.Blink = '\u001B[5m';
+    Formatters.Inverse = '\u001B[7m';
+    Formatters.Hidden = '\u001B[8m';
+    Formatters.Strikethrough = '\u001B[9m';
+    Formatters.DoubleUnderline = '\u001B[21m';
+  })(Formatters = Colors.Formatters || (Colors.Formatters = {}));
+})(Colors = exports.Colors || (exports.Colors = {}));
