@@ -1,98 +1,55 @@
-// eslint-disable-next-line no-octal-escape
-
-interface colorTypes {
-  Foreground: string;
-  Background: string;
-  ForegroundLight?: string;
-  BackgroundLight?: string;
-}
-
-interface colors {
-  Black: colorTypes;
-  Red: colorTypes;
-  Green: colorTypes;
-  Yellow: colorTypes;
-  Blue: colorTypes;
-  Magenta: colorTypes;
-  Cyan: colorTypes;
-  White: colorTypes;
-}
-
-const formatting = {
-  Reset: '\x1b[0m',
-  Bright: '\x1b[1m',
-  Dim: '\x1b[2m',
-  Italic: '\x1b[3m',
-  Underline: '\x1b[4m',
-  /**
-   * Not known to work, should be removed but wheres the fun in that.
-   */
-  Slowblink: '\x1b[5m',
-  /**
-   * Not known to work, should be removed but wheres the fun in that.
-   */
-  Fastblink: '\x1b[6m',
-  Reverse: '\x1b[7m',
-  Hidden: '\x1b[8m',
-  /**
-   * Not known to work, should be removed but wheres the fun in that.
-   */
-  Crossout: '\x1b[9m'
-};
-
-const Colors: colors = {
-  Black: {
-    Foreground: '\x1b[30m',
-    Background: '\x1b[40m'
-  },
-  Red: {
-    Foreground: '\x1b[31m',
-    Background: '\x1b[41m',
-    ForegroundLight: '\x1b[91m',
-    BackgroundLight: '\x1b[101m'
-  },
-
-  Green: {
-    Foreground: '\x1b[32m',
-    Background: '\x1b[42m',
-    ForegroundLight: '\x1b[92m',
-    BackgroundLight: '\x1b[102m'
-  },
-  Yellow: {
-    Foreground: '\x1b[33m',
-    Background: '\x1b[43m',
-    ForegroundLight: '\x1b[93m',
-    BackgroundLight: '\x1b[103m'
-  },
-  Blue: {
-    Foreground: '\x1b[34m',
-    Background: '\x1b[44m',
-    ForegroundLight: '\x1b[94m',
-    BackgroundLight: '\x1b[104m'
-  },
-  Magenta: {
-    Foreground: '\x1b[35m',
-    Background: '\x1b[45m',
-    ForegroundLight: '\x1b[95m',
-    BackgroundLight: '\x1b[105m'
-  },
-  Cyan: {
-    Foreground: '\x1b[36m',
-    Background: '\x1b[46m',
-    ForegroundLight: '\x1b[96m',
-    BackgroundLight: '\x1b[106m'
-  },
-  White: {
-    Foreground: '\x1b[37m',
-    Background: '\x1b[47m',
-    ForegroundLight: '\x1b[97m',
-    BackgroundLight: '\x1b[107m'
+/* eslint-disable no-unused-vars */
+export namespace Colors {
+  export enum Foreground {
+    Grey = '\u001b[90m',
+    Gray = '\u001b[90m',
+    Red = '\u001b[31m',
+    LightRed = '\u001b[91m',
+    Green = '\u001b[32m',
+    LightGreen = '\u001b[92m',
+    Yellow = '\u001b[33m',
+    LightYellow = '\u001b[93m',
+    Blue = '\u001b[34m',
+    LightBlue = '\u001b[94m',
+    Magenta = '\u001b[35m',
+    LightMagenta = '\u001b[95m',
+    Cyan = '\u001b[36m',
+    LightCyan = '\u001b[96m',
+    White = '\u001b[37m', // this might be wrong
+    LightWhite = '\u001b[97m',
+    Black = '\u001b[30m',
   }
-};
 
-export {
-  Colors,
-  colors,
-  colorTypes,
-  formatting
-};
+  export enum Background {
+    Grey = '\u001b[100m',
+    Gray = '\u001b[100m',
+    Red = '\u001b[41m',
+    LightRed = '\u001b[101m',
+    Green = '\u001b[42m',
+    LightGreen = '\u001b[102m',
+    Yellow = '\u001b[43m',
+    LightYellow = '\u001b[103m',
+    Blue = '\u001b[44m',
+    LightBlue = '\u001b[104m',
+    Magenta = '\u001b[45m',
+    LightMagenta = '\u001b[105m',
+    Cyan = '\u001b[46m',
+    LightCyan = '\u001b[106m',
+    White = '\u001b[m47',
+    LightWhite = '\u001b[107m',
+    Black = '\u001b[40m',
+  }
+
+  export enum Formatters {
+    Reset = '\u001b[0m',
+    Bold = '\u001b[1m',
+    Dim = '\u001b[2m',
+    Italic = '\u001b[3m',
+    Underline = '\u001b[4m',
+    Blink = '\u001b[5m',
+    Inverse = '\u001b[7m',
+    Hidden = '\u001b[8m',
+    Strikethrough = '\u001b[9m',
+    DoubleUnderline = '\u001b[21m',
+  }
+}

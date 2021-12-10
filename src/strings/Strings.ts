@@ -16,7 +16,7 @@ export class Strings {
 
   /**
    * Creates a random string with a length of the provided value.
-   * @exmaple ```js
+   * @example ```js
    *    Strings.createID(5);
    *    // returns 'AK3mw'
    * ```

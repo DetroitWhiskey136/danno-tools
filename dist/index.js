@@ -1,8 +1,15 @@
 'use strict';
+const __createBinding = (this && this.__createBinding) || (Object.create
+  ? function (o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function () { return m[k]; } });
+  }
+  : function (o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+  });
+const __exportStar = (this && this.__exportStar) || function (m, exports) {
+  for (const p in m) if (p !== 'default' && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, '__esModule', { value: true });
-// eslint-disable-next-line no-void
-exports.Logger = void 0;
-// eslint-disable-next-line camelcase
-const src_1 = require('./src');
-Object.defineProperty(exports, 'Logger', { enumerable: true, get: function () { return src_1.Logger; } });
-// # sourceMappingURL=index.js.map
+__exportStar(require('./src'), exports);

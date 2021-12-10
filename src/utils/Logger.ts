@@ -1,36 +1,20 @@
 /* eslint-disable no-unused-vars */
 import * as fs from 'fs';
-import { Colors, colors, formatting } from '../features/Colors';
+import { Colors } from '../features/Colors';
 
-interface Logger {
-  path: string;
-  WTF: boolean;
-}
-
-export interface LoggerOptions {
-  /**
-   * Sets the path of the log folder, if WTF = true this is needed
-   */
-  path: string;
-  /**
-   * WTRIE TO FILE?
-   */
-  WTF: boolean;
-}
+type ColorResolvable = typeof Colors | number | string;
 
 /**
  * The type definitions for Logger Types
  * @interface LoggerTypes
  */
-interface LoggerTypes {
+ interface LoggerTypes {
   LOG: string[];
   INFO: string[];
   DEBUG: string[];
   WARN: string[];
   ERROR: string[];
 }
-
-type ColorResolvable = colors | number | string;
 
 /**
  * Gives functions for formatting the content.
@@ -42,7 +26,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   bold (text: string): string {
-    return `${formatting.Bright}${text}${formatting.Reset}`;
+    return `${Colors.Formatters.Bold}${text}${Colors.Formatters.Reset}`;
   },
 
   /**
@@ -52,7 +36,7 @@ const TerminalFormatter = {
    * @returns {string}
    */
   color (color: ColorResolvable, text: string): string {
-    return `${color + text}${formatting.Reset}`;
+    return `${color + text}${Colors.Formatters.Reset}`;
   },
 
   /**
@@ -61,19 +45,55 @@ const TerminalFormatter = {
    * @returns {string}
    */
   underlined (text: string): string {
-    return `${formatting.Underline}${formatting.Reset}`;
+    return `${Colors.Formatters.Underline}${text}${Colors.Formatters.Reset}`;
   }
 };
 
-// eslint-disable-next-line no-redeclare
-class Logger {
-  constructor (options: LoggerOptions = { path: null, WTF: false }) {
-    this.path = options.path;
-    this.WTF = options.WTF || false;
+/**
+ * This is a great tool for creating a logging system in your project that follows a simple enough syntax, its also reuseable if implemented correctly.
+ *
+ * @example
+ * ```js
+ *  const { Logger } = require('danno-tools');
+ *  const logger = new Logger({ WTF: false, path: './logs' });
+ *  logger.log('this is a test log entry');
+ * ```
+ * @interface Logger
+ */
+export interface Logger {
+   /**
+   * The path to the logs folder you want to use.
+   * I normally use the root of the project.
+   *
+   * This will default to the CWD/logs.
+   * in order for this to work you'll want to set WTF(Write To File) true
+   *
+   */
+    path: string;
+    /**
+     * Do you want to write the entries to a file in the logs folder?
+     *
+     * Set this `true`
+     *
+     * Note: `The output will always go to the console regardless of this properties value`.
+     */
+    WTF: boolean;
+}
+
+export interface LoggerOptions extends Logger {
+}
+
+/**
+ * @class Logger
+ */
+export class Logger {
+  constructor (options: LoggerOptions) {
+    this.path = options.path ?? `${process.cwd()}/logs`;
+    this.WTF = options.WTF ?? false;
   }
 
   /**
-   * Concats 0 to the beginning of the number if value is less than 10.
+   * Concatenates 0 to the beginning of the number if value is less than 10.
    *
    * NOTE: -- This returns a string because of how numbers work, this is fine since the content in the logger is all string based.
    * @private
@@ -101,7 +121,7 @@ class Logger {
     const fileDate = `${date.getMonth() + 1}-${this.formatTime(date.getDate())}-${date.getFullYear()}`;
 
     return [
-      TerminalFormatter.color(Colors.Black.ForegroundLight, `${formattedDate} ${formattedTime}`),
+      TerminalFormatter.color(Colors.Foreground.Grey, `${formattedDate} ${formattedTime}`),
       `${fileDate}`,
       `${formattedDate} ${formattedTime}`
     ];
@@ -136,7 +156,7 @@ class Logger {
       DEBUG: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.Magenta.ForegroundLight, 'DEBUG'
+            Colors.Foreground.LightMagenta, 'DEBUG'
           )
         ),
         'DEBUG'
@@ -144,7 +164,7 @@ class Logger {
       ERROR: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.Red.Foreground, 'ERROR'
+            Colors.Foreground.Red, 'ERROR'
           )
         ),
         'ERROR'
@@ -152,7 +172,7 @@ class Logger {
       INFO: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.Cyan.Foreground, 'INFO'
+            Colors.Foreground.Cyan, 'INFO'
           )
         ),
         'INFO'
@@ -160,7 +180,7 @@ class Logger {
       LOG: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.Green.Foreground, 'LOG'
+            Colors.Foreground.Green, 'LOG'
           )
         ),
         'LOG'
@@ -168,7 +188,7 @@ class Logger {
       WARN: [
         TerminalFormatter.bold(
           TerminalFormatter.color(
-            Colors.Yellow.Foreground, 'WARN'
+            Colors.Foreground.Yellow, 'WARN'
           )
         ),
         'WARN'
@@ -263,5 +283,3 @@ class Logger {
     }
   }
 }
-
-export default Logger;
